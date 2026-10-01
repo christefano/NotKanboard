@@ -13,7 +13,7 @@
 4. Send a test email (invite a user, trigger a task notification, etc.) and check the "From" name and footer.
 
 
-## Keep your custom strings through an update
+## Keeping your custom strings through an update
 
 Kanboard's in-app plugin updater replaces the whole plugin folder (including `config.php`), so you can put your custom strings in `NotKanboard.config.json` in Kanboard's `data/` directory. NotKanboard reads it after the plugin's `config.php`, so any key in it works and a NotKanboard update won't overwrite it.
 
@@ -21,8 +21,8 @@ The second file only has the keys to change:
 
 ```json
 {
-    "sender_name": "Acme Projects",
-    "footer_name": "Acme Projects"
+    "sender_name": "NotKanboard",
+    "footer_name": "NotKanboard"
 }
 ```
 
@@ -33,7 +33,7 @@ The `data/` directory comes from Kanboard's `DATA_DIR` constant. The override is
 
 ## Conflicts
 
-No Kanboard core or third-party plugin files are edited. These conflict because NotKanboard replaces the same parts at runtime, and the one that loads last takes priority:
+No Kanboard core or third-party plugin files are modified. These conflict because NotKanboard replaces the same parts at runtime, and the one that loads last takes priority:
 
 - Any plugin that replaces the `emailClient` service.
 - Any plugin that replaces the `notification/footer`, `user_invite/email`, or `password_reset/email` templates.
