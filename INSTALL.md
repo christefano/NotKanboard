@@ -15,9 +15,9 @@
 
 ## Keeping your custom strings through an update
 
-Kanboard's in-app plugin updater replaces the whole plugin folder (including `config.php`), so you can put your custom strings in `NotKanboard.config.json` in Kanboard's `data/` directory. NotKanboard reads it after the plugin's `config.php`, so any key in it works and a NotKanboard update won't overwrite it.
+Kanboard's in-app plugin updater replaces the whole plugin folder (including `config.php`), so copy [`NotKanboard.config.json`](NotKanboard.config.json) into Kanboard's `data/` directory and put your custom strings there. NotKanboard reads it after the plugin's `config.php`, so any key in it works and a NotKanboard update won't overwrite it.
 
-The second file only has the keys to change:
+The file only needs the keys to change:
 
 ```json
 {

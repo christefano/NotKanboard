@@ -6,10 +6,10 @@
 ## Quick start
 
 1. Extract `NotKanboard.zip` to `plugins/NotKanboard/` in the Kanboard install.
-2. Edit `plugins/NotKanboard/config.php` (or optionally a `NotKanboard.config.json` file in Kanboard's `data/` directory) and set each custom string. Delete or comment out a line to keep Kanboard's original string.
+2. Edit `plugins/NotKanboard/config.php` (or copy [`NotKanboard.config.json`](NotKanboard.config.json) into Kanboard's `data/` directory and edit it there) and set each custom string. Delete or comment out a line to keep Kanboard's original string.
 3. Reload PHP-FPM if opcache is on. `config.php` is cached like any PHP file, so edits don't show until it reloads.
 
-The config file defaults to "NotKanboard" and `https://notkanboard.org` as an example, so you'll want to change those right away. [INSTALL.md](INSTALL.md) covers what NotKanboard conflicts with and updating without losing your custom strings when updating NotKanboard.
+The config file defaults to "NotKanboard" and `https://notkanboard.org` as an example, so change those right away. [INSTALL.md](INSTALL.md) covers conflicts and keeping your custom strings through an update.
 
 
 ## What it replaces
@@ -38,7 +38,7 @@ A key left out of `config.php` (or optionally a `NotKanboard.config.json` file i
 ## Other "Kanboard" labels
 
 - Two-factor app label: Kanboard's own `config.php` sets this, and no extra plugin is needed. Add `define('TOTP_ISSUER', 'NotKanboard');` or set the `TOTP_ISSUER` environment variable. It defaults to "Kanboard".
-- Calendar feeds: core iCal export hardcodes "Kanboard" as the feed's product ID with no hook, and NotKanboard can't change that. The calendar name itself, though, is the Kanboard project or username.
+- Calendar feeds: core iCal export hardcodes "Kanboard" as the feed's product ID with no hook, and NotKanboard can't change that. The calendar name itself is the Kanboard project or username.
 - On the server where only a Kanboard admin can see it, strings are unchanged in the command-line tool name, the HTTP user agent, the database application name, and error log lines.
 
 
@@ -47,7 +47,7 @@ A key left out of `config.php` (or optionally a `NotKanboard.config.json` file i
 - Strings that another plugin adds to email (for example an "automated notification" line) aren't changed. Find which plugin is doing that and override it there.
 - Replaces the `emailClient` service and three email templates, so it conflicts with any plugin that does the same. Be sure to check this on your server if you're using other email plugins.
 - With `page_title_prefix` on, it also overrides the `layout` template. It wraps whatever layout was registered before it (core or a plugin like Customizer) and changes only the title, so the two will work together. A plugin that overrides `layout` later in its own `onStartup()` replaces the prefix.
-- The replacement `emailClient` registers only the smtp, sendmail, and mail transports, so the load order is important. A plugin that resolves `emailClient` before NotKanboard loads can hit Pimple's frozen-service error or lose its transport. Be sure to check this on your server if you're using other email plugins.
+- The replacement `emailClient` registers only the smtp, sendmail, and mail transports, so load order matters. A plugin that resolves `emailClient` before NotKanboard loads can hit Pimple's frozen-service error or lose its transport. Be sure to check this on your server if you're using other email plugins.
 
 
 ## What it overrides
