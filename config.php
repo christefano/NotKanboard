@@ -17,8 +17,8 @@ return array(
     'sender_name' => 'NotKanboard',
 
     // "From" name when a logged-in user triggers the email. %s is their name.
-    // An empty string means always use sender_name.
-    'sender_name_via' => '',
+    // Set it to an empty string to always use sender_name instead.
+    'sender_name_via' => '%s via NotKanboard',
 
     // Sign-off at the bottom of task and comment notifications.
     'footer_name' => 'NotKanboard',
